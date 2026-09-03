@@ -11,7 +11,7 @@ import SwiftUI
 struct professional_textingApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
         }
     }
 }
