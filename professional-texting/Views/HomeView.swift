@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     // MARK: Variables
     @State private var message = "" // user's message
+    @FocusState private var isEditorFocused: Bool
     
     var body: some View {
         VStack (spacing: 30) {
@@ -26,24 +27,31 @@ struct HomeView: View {
             
             ZStack (alignment: .topLeading) {
                 TextEditor(text: $message)
+                    .focused($isEditorFocused)
                 
                 if message.isEmpty {
                     Text("Start typing or paste your message")
                         .foregroundStyle(Color.secondary)
-                        .padding(3)
+                        .padding(.leading, 3)
+                        .padding(.top, 10)
                 }
-                
             }
-            .frame(maxWidth: 350, maxHeight: 200)
+            .frame(maxWidth: 350)
             
             Spacer()
             
-            Button("Evaluate message") {
-                // action
+            // TODO: Fix button design (fill bottom screen)
+            Button ("Evaluate message") {
+                Task {
+                    try await FoundationModelService().evaluate(message: message)
+                }
             }
             .buttonStyle(.borderedProminent)
         }
         .padding()
+        .onTapGesture {
+            isEditorFocused = false
+        }
     }
 }
 
