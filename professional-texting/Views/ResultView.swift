@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ResultView: View {
-    @Binding var message: String
+    let message: String
+    let evaluation: String
     
     var body: some View {
         VStack (alignment: .leading, spacing: 40){
@@ -26,12 +27,12 @@ struct ResultView: View {
                     .bold()
                 
                 // TODO: Insert model's returned value
-                Text("AI response goes here")
+                Text(evaluation)
             }
         }
     }
 }
 
 #Preview {
-    ResultView(message: .constant("Hello, world!"))
+    ResultView(message: "Hello, world!", evaluation: "Evaluation from AI goes here")
 }
