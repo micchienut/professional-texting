@@ -9,7 +9,9 @@ import Foundation
 import FoundationModels
 
 struct FoundationModelService {
+    
     func evaluate(message: String) async throws -> String {
+        
         let session = LanguageModelSession(instructions: evaluationInstruction)
         
         let prompt = """

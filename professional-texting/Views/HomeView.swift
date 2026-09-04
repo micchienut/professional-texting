@@ -11,6 +11,7 @@ struct HomeView: View {
     // MARK: Variables
     @State private var message: String = "" // user's message
     @State private var evaluation: String = ""
+    @State private var isEvaluating: Bool = false
     @State private var showEvaluation: Bool = false
     @FocusState private var isEditorFocused: Bool
     
@@ -45,16 +46,31 @@ struct HomeView: View {
                 
                 Spacer()
                 
-                // TODO: Fix button design (fill bottom screen)
-                Button ("Evaluate message") {
+                // TODO: Add disabled mode of button
+                Button {
                     Task {
                         do {
+                            isEvaluating = true
                             evaluation = try await modelService.evaluate(message: message)
                         }
                         catch {
                             evaluation = "Something went wrong: \(error.localizedDescription)"
                         }
+                        isEvaluating = false
+                        showEvaluation = true
+                        
                     }
+                } label: {
+                    HStack {
+                        if isEvaluating {
+                            ProgressView()
+                                .tint(.white)
+                        }
+                        
+                        Text(isEvaluating ? "Evaluating..." : "Evaluate")
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding()
                 }
                 .buttonStyle(.borderedProminent)
                 .navigationDestination(isPresented: $showEvaluation) {

@@ -13,7 +13,7 @@ struct ResultView: View {
     
     var body: some View {
         VStack (alignment: .leading, spacing: 40){
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 5) {
                 Text("Your message")
                     .font(.title)
                     .bold()
@@ -21,15 +21,19 @@ struct ResultView: View {
                 Text(message)
             }
             
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 5) {
                 Text("How your message sounds")
                     .font(.title)
                     .bold()
                 
-                // TODO: Insert model's returned value
-                Text(evaluation)
+                ScrollView {
+                    Text(evaluation)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .frame(maxWidth: .infinity)
             }
         }
+        .padding()
     }
 }
 
