@@ -38,7 +38,7 @@ struct HomeView: View {
                     if message.isEmpty {
                         Text("Start typing or paste your message")
                             .foregroundStyle(Color.secondary)
-                            .padding(.leading, 3)
+                            .padding(.leading, 5)
                             .padding(.top, 10)
                     }
                 }
@@ -73,6 +73,7 @@ struct HomeView: View {
                     .padding()
                 }
                 .buttonStyle(.borderedProminent)
+                .disabled(message.isEmpty || isEvaluating)
                 .navigationDestination(isPresented: $showEvaluation) {
                     ResultView(message: message, evaluation: evaluation)
                 }
