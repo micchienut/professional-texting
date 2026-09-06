@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct CompetenceCard: View {
+    let competenceEvaluation: CompetenceEvaluation
+    
     var body: some View {
         VStack (alignment: .leading, spacing: 15) {
             VStack (alignment: .leading, spacing: 10) {
-                CompetenceStatusCapsule()
+                CompetenceStatusCapsule(status: competenceEvaluation.status)
                 
                 HStack {
-                    Text("Clarity")
+                    Text(competenceEvaluation.competence.title)
                         .font(.title3)
                         .bold()
                     
@@ -25,16 +27,16 @@ struct CompetenceCard: View {
                 }
             }
             
-            // TODO: Output 1-2 sentences from FM
-            Text("The message is clear in its purpose, but it could be more specific.")
+            // TODO: Output 1-2 sentences from FM (improve instructions)
+            Text(competenceEvaluation.summary)
             
             VStack (alignment: .leading, spacing: 5) {
                 Text("Suggested improvements:")
                     .bold()
                 
-                // TODO: Parse list from FM
-                Text("• Specify exact date of the report")
-                Text("• Mention the department or person responsible")
+                ForEach(competenceEvaluation.suggestions, id: \.self) { suggestion in
+                    Text("• \(suggestion)")
+                }
             }
         }
         .padding([.trailing, .leading], 15)
@@ -47,6 +49,6 @@ struct CompetenceCard: View {
     }
 }
 
-#Preview {
-    CompetenceCard()
-}
+//#Preview {
+//    CompetenceCard()
+//}

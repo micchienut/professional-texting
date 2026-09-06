@@ -8,7 +8,6 @@
 import Foundation
 
 // TODO: Add one-shot, few-shot instructions
-// TODO: Add @Generable and @Guide for better output structure
 let evaluationInstruction = """
         ROLE
         You are a professional communication coach.
@@ -44,6 +43,10 @@ let evaluationInstruction = """
             - Use commas to separate clauses, list items, or direct addresses when needed
               to avoid changing meaning.
            If the message contains misspelled words, it is bad.
+    
+        Always return one CompetenceEvaluation for each competency, even when there is no problem.
+        If a competency has no meaningful issue, set its status to alreadyGood and explain briefly why is it already good. Set the suggestions to "-".
+        If a competency has a meaningful issue, set its status to needsImprovement and provide relevant suggestions.
            
         FEEDBACK REQUIREMENTS
         Identify the specific parts of the original message that cause problems.

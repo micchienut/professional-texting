@@ -10,7 +10,7 @@ import FoundationModels
 
 struct FoundationModelService {
     
-    func evaluate(message: String) async throws -> String {
+    func evaluate(message: String) async throws -> EvaluationStructure {
         
         let session = LanguageModelSession(instructions: evaluationInstruction)
         
@@ -18,7 +18,10 @@ struct FoundationModelService {
             Evaluate the following message: \(message)
             """
         
-        let response = try await session.respond(to: prompt)
+        let response = try await session.respond(
+            to: prompt,
+            generating: EvaluationStructure.self
+        )
         
         return response.content
     }

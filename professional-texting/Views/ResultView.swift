@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ResultView: View {
     let message: String
-    let evaluation: String
+    let evaluation: EvaluationStructure
     
     var body: some View {
         VStack (alignment: .leading, spacing: 40){
@@ -27,14 +27,14 @@ struct ResultView: View {
                     .font(.title)
                     .bold()
                 
-                // TODO: Make this dynamic
-                Text("Your message needs some fixing! 🔧")
+                Text(evaluation.overallAssessment.title)
                 
-                // TODO: Format evaluation (see Figma)
                 ScrollView {
-                    CompetenceCard()
-                    CompetenceCard()
-                    CompetenceCard()
+                    VStack (alignment: .leading, spacing: 30) {
+                        ForEach(evaluation.competencies, id: \.competence) { competence in
+                            CompetenceCard(competenceEvaluation: competence)
+                        }
+                    }
                 }
             }
             
@@ -44,6 +44,6 @@ struct ResultView: View {
     }
 }
 
-#Preview {
-    ResultView(message: "Hello, world!", evaluation: "Evaluation from AI goes here")
-}
+//#Preview {
+//    ResultView()
+//}

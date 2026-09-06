@@ -8,18 +8,20 @@
 import SwiftUI
 
 struct CompetenceStatusCapsule: View {
+    let status: CompetenceStatus
+    
     var body: some View {
-        Text("Needs improvement")
+        Text(status.title)
             .font(.caption)
             .foregroundStyle(.white)
             .padding([.leading, .trailing])
             .padding([.top, .bottom], 10)
-            .background(Color.red)
+            .background(status.color)
             .cornerRadius(100)
             .glassEffect()
     }
 }
 
-#Preview {
-    CompetenceStatusCapsule()
-}
+//#Preview {
+//    CompetenceStatusCapsule()
+//}

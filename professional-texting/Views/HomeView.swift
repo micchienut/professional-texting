@@ -10,7 +10,8 @@ import SwiftUI
 struct HomeView: View {
     // MARK: Variables
     @State private var message: String = "" // user's message
-    @State private var evaluation: String = ""
+    @State private var evaluation: EvaluationStructure?
+    @State private var errorMessage: String?
     @State private var isEvaluating: Bool = false
     @State private var showEvaluation: Bool = false
     @FocusState private var isEditorFocused: Bool
@@ -48,15 +49,18 @@ struct HomeView: View {
                 
                 Button {
                     Task {
+                        isEvaluating = true
+                        errorMessage = nil
+                        
                         do {
-                            isEvaluating = true
                             evaluation = try await modelService.evaluate(message: message)
+                            showEvaluation = true
                         }
                         catch {
-                            evaluation = "Something went wrong: \(error.localizedDescription)"
+                            errorMessage = "Something went wrong: \(error.localizedDescription)"
                         }
+                        
                         isEvaluating = false
-                        showEvaluation = true
                         
                     }
                 } label: {
@@ -74,7 +78,9 @@ struct HomeView: View {
                 .buttonStyle(.borderedProminent)
                 .disabled(message.isEmpty || isEvaluating)
                 .navigationDestination(isPresented: $showEvaluation) {
-                    ResultView(message: message, evaluation: evaluation)
+                    if let evaluation {
+                        ResultView(message: message, evaluation: evaluation)
+                    }
                 }
             }
             .padding()
@@ -85,6 +91,6 @@ struct HomeView: View {
     }
 }
 
-#Preview {
-    HomeView()
-}
+//#Preview {
+//    HomeView()
+//}
