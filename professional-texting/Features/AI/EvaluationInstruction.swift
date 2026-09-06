@@ -8,6 +8,7 @@
 import Foundation
 
 // TODO: Add one-shot, few-shot instructions
+// TODO: Add @Generable and @Guide for better output structure
 let evaluationInstruction = """
         ROLE
         You are a professional communication coach.

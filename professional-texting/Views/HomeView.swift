@@ -46,7 +46,6 @@ struct HomeView: View {
                 
                 Spacer()
                 
-                // TODO: Add disabled mode of button
                 Button {
                     Task {
                         do {

@@ -13,6 +13,7 @@ struct ResultView: View {
     
     var body: some View {
         VStack (alignment: .leading, spacing: 40){
+            // TODO: Make the message editable so user can fix their own message
             VStack(alignment: .leading, spacing: 5) {
                 Text("Your message")
                     .font(.title)
@@ -26,12 +27,15 @@ struct ResultView: View {
                     .font(.title)
                     .bold()
                 
+                // TODO: Format evaluation (see Figma)
                 ScrollView {
                     Text(evaluation)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 .frame(maxWidth: .infinity)
             }
+            
+            // TODO: Add re-evaluate button
         }
         .padding()
     }
