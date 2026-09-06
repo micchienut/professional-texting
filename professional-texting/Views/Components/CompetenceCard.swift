@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CompetenceCard: View {
+    @State private var isExpanded: Bool = true
     let competenceEvaluation: CompetenceEvaluation
     
     var body: some View {
@@ -22,20 +23,26 @@ struct CompetenceCard: View {
                     
                     Spacer()
                     
-                    // TODO: Add chevron button to collapse/expand the view
-                    Image(systemName: "chevron.up")
+                    Button {
+                        isExpanded.toggle()
+                    } label: {
+                        Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
+                            .foregroundStyle(Color.primary)
+                    }
                 }
             }
             
-            // TODO: Output 1-2 sentences from FM (improve instructions)
-            Text(competenceEvaluation.summary)
-            
-            VStack (alignment: .leading, spacing: 5) {
-                Text("Suggested improvements:")
-                    .bold()
+            if isExpanded {
+                // TODO: Output 1-2 sentences from FM (improve instructions)
+                Text(competenceEvaluation.summary)
                 
-                ForEach(competenceEvaluation.suggestions, id: \.self) { suggestion in
-                    Text("• \(suggestion)")
+                VStack (alignment: .leading, spacing: 5) {
+                    Text("Suggested improvements:")
+                        .bold()
+                    
+                    ForEach(competenceEvaluation.suggestions, id: \.self) { suggestion in
+                        Text("• \(suggestion)")
+                    }
                 }
             }
         }
