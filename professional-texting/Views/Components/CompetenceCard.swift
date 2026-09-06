@@ -11,7 +11,7 @@ struct CompetenceCard: View {
     var body: some View {
         VStack (alignment: .leading, spacing: 15) {
             VStack (alignment: .leading, spacing: 10) {
-                CompetenceStatus()
+                CompetenceStatusCapsule()
                 
                 HStack {
                     Text("Clarity")

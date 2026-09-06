@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CompetenceStatus: View {
+struct CompetenceStatusCapsule: View {
     var body: some View {
         Text("Needs improvement")
             .font(.caption)
@@ -21,5 +21,5 @@ struct CompetenceStatus: View {
 }
 
 #Preview {
-    CompetenceStatus()
+    CompetenceStatusCapsule()
 }

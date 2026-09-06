@@ -27,12 +27,15 @@ struct ResultView: View {
                     .font(.title)
                     .bold()
                 
+                // TODO: Make this dynamic
+                Text("Your message needs some fixing! 🔧")
+                
                 // TODO: Format evaluation (see Figma)
                 ScrollView {
-                    Text(evaluation)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    CompetenceCard()
+                    CompetenceCard()
+                    CompetenceCard()
                 }
-                .frame(maxWidth: .infinity)
             }
             
             // TODO: Add re-evaluate button
