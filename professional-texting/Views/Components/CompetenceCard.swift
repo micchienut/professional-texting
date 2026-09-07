@@ -24,7 +24,9 @@ struct CompetenceCard: View {
                     Spacer()
                     
                     Button {
-                        isExpanded.toggle()
+                        withAnimation {
+                            isExpanded.toggle()
+                        }
                     } label: {
                         Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
                             .foregroundStyle(Color.primary)
