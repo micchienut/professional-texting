@@ -24,7 +24,7 @@ struct CompetenceCard: View {
                     Spacer()
                     
                     Button {
-                        withAnimation {
+                        withAnimation (.easeInOut(duration: 0.25)) {
                             isExpanded.toggle()
                         }
                     } label: {
@@ -52,7 +52,7 @@ struct CompetenceCard: View {
         .padding([.top, .bottom], 20)
         .background(
             RoundedRectangle(cornerRadius: 12)
-                .fill(Color.white)
+                .fill(Color.background)
                 .shadow(color: .black.opacity(0.2), radius: 3)
         )
     }
