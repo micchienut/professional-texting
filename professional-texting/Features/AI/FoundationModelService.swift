@@ -9,10 +9,13 @@ import Foundation
 import FoundationModels
 
 struct FoundationModelService {
+    private let promptingStrategy: promptingStrategy = .oneShot
     
     func evaluate(message: String) async throws -> EvaluationStructure {
         
-        let session = LanguageModelSession(instructions: evaluationInstruction)
+        let session = LanguageModelSession(
+            instructions: evaluationInstruction.make(strategy: promptingStrategy)
+        )
         
         let prompt = """
             Evaluate the following message: \(message)
