@@ -12,35 +12,43 @@ struct ResultView: View {
     let evaluation: EvaluationStructure
     
     var body: some View {
-        VStack (alignment: .leading, spacing: 40){
-            // TODO: Make the message editable so user can fix their own message
-            VStack(alignment: .leading, spacing: 5) {
-                Text("Your message")
-                    .font(.title)
-                    .bold()
+        ScrollView {
+            VStack (alignment: .leading, spacing: 40){
+                // TODO: Make the message editable so user can fix their own message
+                VStack(alignment: .leading, spacing: 5) {
+                    Text("Your message")
+                        .font(.title)
+                        .bold()
+                    
+                    Text(message)
+                }
                 
-                Text(message)
-            }
-            
-            VStack(alignment: .leading, spacing: 5) {
-                Text("How your message sounds")
-                    .font(.title)
-                    .bold()
-                
-                Text(evaluation.overallAssessment.title)
-                
-                ScrollView {
+                VStack (alignment: .leading, spacing: 15) {
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text("How your message sounds")
+                            .font(.title)
+                            .bold()
+                        
+                        Text(evaluation.overallAssessment.title)
+                    }
+                    
                     VStack (alignment: .leading, spacing: 30) {
-                        ForEach(evaluation.competencies, id: \.competence) { competence in
-                            CompetenceCard(competenceEvaluation: competence)
+                        ForEach(Competence.allCases, id: \.self){ competence in
+                            if let competenceEvaluation = evaluation.competencies.first(
+                                where: { $0.competence == competence }
+                            ) {
+                                CompetenceCard(
+                                    competenceEvaluation: competenceEvaluation
+                                )
+                            }
                         }
                     }
+                    
+                    // TODO: Add re-evaluate button
                 }
             }
-            
-            // TODO: Add re-evaluate button
+            .padding()
         }
-        .padding()
     }
 }
 

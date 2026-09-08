@@ -24,7 +24,8 @@ struct CompetenceCard: View {
                     Spacer()
                     
                     Button {
-                        withAnimation (.easeInOut(duration: 0.25)) {
+                        withAnimation (.spring(response: 0.25,
+                                               dampingFraction: 0.8)) {
                             isExpanded.toggle()
                         }
                     } label: {

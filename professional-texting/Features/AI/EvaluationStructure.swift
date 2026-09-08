@@ -24,7 +24,7 @@ struct CompetenceEvaluation {
 }
 
 @Generable
-enum Competence {
+enum Competence: CaseIterable {
     case clarity
     case conciseness
     case politeness
