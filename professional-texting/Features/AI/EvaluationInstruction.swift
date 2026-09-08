@@ -131,5 +131,111 @@ let oneShotExample = """
 """
 
 let fewShotExample = """
-    
+    EXAMPLE 1
+
+    User message:
+    "Good morning Professor, could you please send me the material file for tomorrow's presentation? Thank you."
+
+    Expected evaluation:
+
+    The message is proper to send in a professional context.
+
+    Return exactly four evaluations:
+
+    1. Clarity
+       - status: alreadyGood
+       - The request is understandable, has clear and specific intention.
+       - suggestion: None
+
+    2. Conciseness
+       - status: alreadyGood
+       - The message is short and does not contain unnecessary repetition.
+       - suggestions: None
+
+    3. Politeness
+       - status: alreadyGood
+       - The message includes proper greetings (Good morning) and appreciation (Thank you).
+       - suggestions: None
+
+    4. Capitalization and punctuation
+       - status: alreadyGood
+       - The message follows proper capitalization and punctuation and does not contain misspelling.
+       - suggestions: None
+
+
+    Important: All four competencies must be evaluated even when there are no meaningful issues.
+
+    END EXAMPLE 1
+
+
+    EXAMPLE 2
+
+    User message:
+    "hi prof, can u send me the file? thanks"
+
+    Expected evaluation:
+
+    The message is still not proper to send in a professional context.
+
+    Return exactly four evaluations:
+
+    1. Clarity
+       - status: needsImprovement
+       - The request is understandable, but "the file" does not specify which file.
+       - suggestion: Specify which file is being requested.
+
+    2. Conciseness
+       - status: alreadyGood
+       - The message is short and does not contain unnecessary repetition.
+       - suggestions: None
+
+    3. Politeness
+       - status: needsImprovement
+       - The message includes "thanks", which expresses appreciation, but includes "hi" which is considered informal.
+       - suggestions: Change "hi" to "Hello" to sound more formal.
+
+    4. Capitalization and punctuation
+       - status: needsImprovement
+       - The message begins with a lowercase word and contains shortened wording.
+       - suggestions:
+         - Capitalize the first word.
+         - Avoid shortened words such as "u" in professional communication.
+
+    END EXAMPLE 2
+
+
+    EXAMPLE 3
+
+    User message:
+    "Hi Sarah can you send the report that we discussed yesterday Thanks"
+
+    Expected evaluation:
+
+    The message is still not proper to send in a professional context.
+
+    Return exactly four evaluations:
+
+    1. Clarity
+       - status: alreadyGood
+       - The message clearly communicates the request and identifies the report being discussed.
+       - suggestion: None
+
+    2. Conciseness
+       - status: needsImprovement
+       - The message does not contain unnecessary repetition.
+       - suggestions: None
+
+    3. Politeness
+       - status: alreadyGood
+       - The message uses direct but respectful request.
+       - suggestions: None
+
+    4. Capitalization and punctuation
+       - status: needsImprovement
+       - The message is missing punctuation between the greeting, request, and closing.
+       - suggestions:
+         - Add "," after "Hi Sarah"
+         - Add "." after "yesterday"
+
+    END EXAMPLE 3
 """
