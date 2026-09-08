@@ -54,6 +54,15 @@ struct HomeView: View {
                         
                         do {
                             evaluation = try await modelService.evaluate(message: message)
+//                            let result = try await modelService.evaluate(message: message)
+//
+//                            print("OVERALL ASSESSMENT:")
+//                            print(result.overallAssessment)
+//
+//                            print("COMPETENCIES:")
+//                            print(result.competencies)
+//
+//                            evaluation = result
                             showEvaluation = true
                         }
                         catch {
