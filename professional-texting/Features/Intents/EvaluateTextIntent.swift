@@ -25,7 +25,7 @@ struct EvaluateTextIntent: AppIntent {
     }
     
     @MainActor
-    func perform() async throws -> some IntentResult {
+    func perform() async throws -> some IntentResult & ProvidesDialog {
         let modelService = FoundationModelService()
         let evaluation = try await modelService.evaluate(message: message)
         
