@@ -33,14 +33,24 @@ struct EvaluateTextIntent: AppIntent {
             $0.status == .needsImprovement
         }
         
+        let suggestions = evaluation.competencies
+            .flatMap { $0.suggestions }
+            .prefix(5)
+        
+        let suggestionText = suggestions
+            .map { "• \($0)" }
+            .joined(separator: "\n")
+        
         if needsImprovement {
             return .result(
                 dialog: IntentDialog(stringLiteral: OverallAssessment.good.title)
+//                dialog: "\(OverallAssessment.good.title)\n\(suggestionText)"
             )
         }
         else {
             return .result(
                 dialog: IntentDialog(stringLiteral: OverallAssessment.bad.title)
+//                dialog: "\(OverallAssessment.bad.title)\n\(suggestionText)"
             )
         }
     }
