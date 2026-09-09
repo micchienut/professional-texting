@@ -35,12 +35,12 @@ struct EvaluateTextIntent: AppIntent {
         
         if needsImprovement {
             return .result(
-                dialog: "Your message needs improvement."
+                dialog: IntentDialog(stringLiteral: OverallAssessment.good.title)
             )
         }
         else {
             return .result(
-                dialog: "Your message looks professional."
+                dialog: IntentDialog(stringLiteral: OverallAssessment.bad.title)
             )
         }
     }
