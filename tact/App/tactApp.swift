@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct professional_textingApp: App {
+struct tactApp: App {
     var body: some Scene {
         WindowGroup {
             HomeView()
