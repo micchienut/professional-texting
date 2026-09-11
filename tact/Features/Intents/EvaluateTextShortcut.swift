@@ -13,8 +13,8 @@ struct EvaluateTextShortcut: AppShortcutsProvider {
         AppShortcut (
             intent: EvaluateTextIntent(),
             phrases: [
-                "Evaluate message in \(.applicationName)",
-                "Check message in \(.applicationName)"
+                "Evaluate with \(.applicationName)",
+                "Check with \(.applicationName)"
             ],
             shortTitle: "Evaluate Message",
             systemImageName: "text.badge.checkmark"
